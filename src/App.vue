@@ -2,6 +2,7 @@
 import axios from 'axios'
 import { store } from './data/store'
 import SearchForm from './components/SearchForm.vue'
+import AppMain from './components/AppMain.vue'
 const endpoint = 'https://api.themoviedb.org/3'
 export default {
   data() {
@@ -11,7 +12,7 @@ export default {
     }
   },
   name: 'Boolflix',
-  components: { SearchForm },
+  components: { SearchForm, AppMain },
   methods: {
 
 
@@ -46,15 +47,5 @@ export default {
 <template>
   <SearchForm @term-change="onTermChange" @form-submit="searchSub" />
 
-  <div class="container">
-    <ul v-for="movie in store.movies" :key="movie.original_title">
-      <li>{{ movie.title }}
-        <ul>
-          <li>{{ movie.original_title }}</li>
-          <li>{{ movie.original_language }}</li>
-          <li>{{ movie.vote_average }}</li>
-        </ul>
-      </li>
-    </ul>
-  </div>
+  <AppMain />
 </template>
