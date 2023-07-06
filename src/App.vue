@@ -1,9 +1,9 @@
 <script>
 import axios from 'axios'
 import { store } from './data/store'
+import { api } from './data/index'
 import SearchForm from './components/SearchForm.vue'
 import AppCard from './components/AppCard.vue'
-const endpoint = 'https://api.themoviedb.org/3'
 export default {
   data() {
     return {
@@ -16,36 +16,40 @@ export default {
   methods: {
 
 
-    /* CHIAMATA API E DESTRUCTURING DEI DATI */
-    fetchMovies(url) {
-      axios.get(url).then(res => {
-        const apiMovies = res.data.results
-        store.movies = apiMovies.map(movie => {
-          const { title, original_title, original_language, vote_average } = movie
-          return { title, original_title, original_language, vote_average }
-        })
-      })
-    },
-
     /* FUNZIONE CHE TIENE TRACCIA DEL TESTO */
     onTermChange(term) {
       this.dbFilter = term
     },
 
+    /* FUNZIONE CHE FA LE CHIAMATE API */
+    searchProd() {
 
-    /* FUNZIONE CHE CREA LA STRINGA CON LA QUALE VERRA' FATTA LA CHIAMATA API */
-    searchSub() {
-      const filterdMovies = `${endpoint}/search/movie?api_key=220ffe0e6b689a55de06f78719fd673e&query=${this.dbFilter}&language=it-IT`
-      this.fetchMovies(filterdMovies)
+      const axiosConfig = {
+        params: {
+          language: api.language,
+          api_key: api.key,
+          query: this.dbFilter
+        }
+      }
+
+
+      axios.get(`${api.baseUri}/search/movie`, axiosConfig).then(res => {
+        this.store.movies = res.data.results
+      })
+      axios.get(`${api.baseUri}/search/tv`, axiosConfig).then(res => {
+        this.store.series = res.data.results
+      })
     }
   }
-
 }
-
 </script>
 
 <template>
-  <SearchForm @term-change="onTermChange" @form-submit="searchSub" />
+  <SearchForm @term-change="onTermChange" @form-submit="searchProd" />
 
+  <h1>Movies</h1>
   <AppCard v-for="movie in store.movies" :key="movie.id" :item="movie" />
+
+  <h1>Series</h1>
+  <AppCard v-for="serie in store.series" :key="serie.id" :item="serie" />
 </template>

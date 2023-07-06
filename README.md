@@ -9,8 +9,7 @@
   - Utilizzando l'event handling _@keyup_ con all'interno il _custom event_ **$emit** facciamo in modo che il testo scritto all'interno del input text arrivi al padre **App.vue**.
 - All'interno di **App.vue** creo una function **onTermChange** che tiene traccia del testo.
 - Dentro il form creo un _@submit.prevent_ e con un _$emit_ lo collego al padre.
-- Usando il metodo **searchSub** creo la stringa che utilizzerò successivamente quando farò le chiamate api.
-- Creo il metodo **fetchMovies** che avrà come paramentro la stringa precedentemente creata e usango axios faccio la relavita chiamata api e con il _destructuring_ estrapolo i dati che mi servono dal db.
-- Creo il componente **AppMain.vue** che stamperà in pagina la lista dei film usando il _v-for_.
+- Usando il metodo **searchSub** che si occuperà di fare le chiamate api.
+- Creo il componente **AppCard.vue** che stamperà in pagina la lista dei film usando il _v-for_.
   - Inserisco un tag img dinamico che inserirà la bandiera della nazione al posto della lingua.
     - Creo un metodo **getImagePath** che avrà come parametro la lingua e si occuperò di ricavare l'url generale dell'img.

@@ -8,6 +8,12 @@ export default {
         hasFlag() {
             const availableFlags = ['it', 'en'];
             return availableFlags.includes(this.item.original_language)
+        },
+        title() {
+            return item.title || item.name
+        },
+        originalTitle() {
+            return item.original_title || item.original_name
         }
     },
     methods: {
@@ -23,11 +29,13 @@ export default {
 
 <template>
     <div class="container">
-        <h1>Movies</h1>
-        <ul>
-            <li>{{ item.title }}</li>
 
-            <li>{{ item.original_title }}</li>
+        <ul>
+            <li>
+                <h2>{{ title }}</h2>
+            </li>
+
+            <li>{{ originalTitle }}</li>
             <li>
                 <img v-if="hasFlag" :src="getImagePath(item.original_language)" :alt="item.original_language">
                 <span v-else>{{ item.original_language }}</span>
