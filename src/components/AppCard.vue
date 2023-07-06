@@ -35,40 +35,37 @@ export default {
 </script>
 
 <template>
-    <div class="container">
+    <ul>
+        <li>
+            <h2>{{ title }}</h2>
+        </li>
 
-        <ul>
-            <li>
-                <h2>{{ title }}</h2>
-            </li>
+        <li>{{ originalTitle }}</li>
+        <li>
+            <img v-if="hasFlag" :src="getImagePath(item.original_language)" :alt="item.original_language">
+            <span v-else>{{ item.original_language }}</span>
+        </li>
+        <li>
+            <FontAwesomeIcon v-if="setVote < 1" :icon="['far', 'fa-star']" />
+            <FontAwesomeIcon v-else :icon="['fas', 'fa-star']" />
+            <FontAwesomeIcon v-if="setVote < 2" :icon="['far', 'fa-star']" />
+            <FontAwesomeIcon v-else :icon="['fas', 'fa-star']" />
 
-            <li>{{ originalTitle }}</li>
-            <li>
-                <img v-if="hasFlag" :src="getImagePath(item.original_language)" :alt="item.original_language">
-                <span v-else>{{ item.original_language }}</span>
-            </li>
-            <li>
-                <FontAwesomeIcon v-if="setVote < 1" :icon="['far', 'fa-star']" />
-                <FontAwesomeIcon v-else :icon="['fas', 'fa-star']" />
-                <FontAwesomeIcon v-if="setVote < 2" :icon="['far', 'fa-star']" />
-                <FontAwesomeIcon v-else :icon="['fas', 'fa-star']" />
+            <FontAwesomeIcon v-if="setVote < 3" :icon="['far', 'fa-star']" />
+            <FontAwesomeIcon v-else :icon="['fas', 'fa-star']" />
 
-                <FontAwesomeIcon v-if="setVote < 3" :icon="['far', 'fa-star']" />
-                <FontAwesomeIcon v-else :icon="['fas', 'fa-star']" />
+            <FontAwesomeIcon v-if="setVote < 4" :icon="['far', 'fa-star']" />
+            <FontAwesomeIcon v-else :icon="['fas', 'fa-star']" />
 
-                <FontAwesomeIcon v-if="setVote < 4" :icon="['far', 'fa-star']" />
-                <FontAwesomeIcon v-else :icon="['fas', 'fa-star']" />
-
-                <FontAwesomeIcon v-if="setVote < 5" :icon="['far', 'fa-star']" />
-                <FontAwesomeIcon v-else :icon="['fas', 'fa-star']" />
+            <FontAwesomeIcon v-if="setVote < 5" :icon="['far', 'fa-star']" />
+            <FontAwesomeIcon v-else :icon="['fas', 'fa-star']" />
 
 
-                {{ setVote }}
-            </li>
-            <li><img :src="`http://image.tmdb.org/t/p/w300/${item.poster_path}`" alt=""> </li>
+            {{ setVote }}
+        </li>
+        <li><img :src="`http://image.tmdb.org/t/p/w300/${item.poster_path}`" alt=""> </li>
 
-        </ul>
-    </div>
+    </ul>
 </template >
 
 

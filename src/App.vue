@@ -44,7 +44,13 @@ export default {
 </script>
 
 <template>
-  <SearchForm @term-change="onTermChange" @form-submit="searchProd" />
+  <header>
+    <div class="container d-flex justify-content-between align-items-center">
+      <img src="./assets/img/netflix-logo.jpg" alt="logo">
+      <SearchForm @term-change="onTermChange" @form-submit="searchProd" />
+    </div>
+  </header>
+
 
   <h1>Movies</h1>
   <AppCard v-for="movie in store.movies" :key="movie.id" :item="movie" />
@@ -52,3 +58,7 @@ export default {
   <h1>Series</h1>
   <AppCard v-for="serie in store.series" :key="serie.id" :item="serie" />
 </template>
+
+<style lang="scss">
+@use './assets/scss/style.scss'
+</style>
