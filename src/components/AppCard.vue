@@ -16,6 +16,10 @@ export default {
         },
         originalTitle() {
             return this.item.original_title || this.item.original_name
+        },
+        setVote() {
+            const vote = this.item.vote_average / 2
+            return Math.ceil(vote)
         }
     },
     methods: {
@@ -24,7 +28,8 @@ export default {
         getImagePath(img) {
             const url = new URL(`../assets/img/${img}.png`, import.meta.url)
             return url.href
-        }
+        },
+
     }
 }
 </script>
@@ -42,7 +47,7 @@ export default {
                 <img v-if="hasFlag" :src="getImagePath(item.original_language)" :alt="item.original_language">
                 <span v-else>{{ item.original_language }}</span>
             </li>
-            <li>{{ item.vote_average }}</li>
+            <li>{{ setVote }}</li>
             <li><img :src="`http://image.tmdb.org/t/p/w300/${item.poster_path}`" alt=""> </li>
 
         </ul>
