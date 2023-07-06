@@ -1,19 +1,21 @@
 <script>
-
 export default {
     props: {
         item: Object
     },
     computed: {
+
+        /* CONTROLLO PRESENZA DELLA BANDIERA */
         hasFlag() {
             const availableFlags = ['it', 'en'];
             return availableFlags.includes(this.item.original_language)
         },
+
         title() {
-            return item.title || item.name
+            return this.item.title || this.item.name
         },
         originalTitle() {
-            return item.original_title || item.original_name
+            return this.item.original_title || this.item.original_name
         }
     },
     methods: {
@@ -41,7 +43,7 @@ export default {
                 <span v-else>{{ item.original_language }}</span>
             </li>
             <li>{{ item.vote_average }}</li>
-
+            <li><img :src="`http://image.tmdb.org/t/p/w300/${item.poster_path}`" alt=""> </li>
 
         </ul>
     </div>

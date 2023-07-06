@@ -32,7 +32,6 @@ export default {
         }
       }
 
-
       axios.get(`${api.baseUri}/search/movie`, axiosConfig).then(res => {
         this.store.movies = res.data.results
       })
