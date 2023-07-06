@@ -51,14 +51,24 @@ export default {
     </div>
   </header>
 
+  <main class="container ">
 
-  <h1>Movies</h1>
-  <AppCard v-for="movie in store.movies" :key="movie.id" :item="movie" />
+    <h1>Movies</h1>
+    <section id="movies" class="d-flex">
 
-  <h1>Series</h1>
-  <AppCard v-for="serie in store.series" :key="serie.id" :item="serie" />
+
+      <AppCard v-for="movie in store.movies" :key="movie.id" :item="movie" />
+
+    </section>
+
+
+    <h1>Series</h1>
+    <section id="series" class="d-flex">
+      <AppCard v-for="serie in store.series" :key="serie.id" :item="serie" />
+    </section>
+  </main>
 </template>
 
 <style lang="scss">
-@use './assets/scss/style.scss'
+@use './assets/scss/style.scss' as *
 </style>
