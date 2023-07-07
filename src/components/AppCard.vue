@@ -20,7 +20,12 @@ export default {
         setVote() {
             const vote = this.item.vote_average / 2
             return Math.ceil(vote)
+        },
+        setPosterPath() {
+            if (!this.item.poster_path) return this.getImagePath('poster-placeholder');
+            return `http://image.tmdb.org/t/p/w342/${this.item.poster_path}`
         }
+
     },
     methods: {
 
@@ -40,7 +45,7 @@ export default {
 <template>
     <div class="my-card">
         <figure class="poster">
-            <img :src="`http://image.tmdb.org/t/p/w342/${item.poster_path}`" alt="copertina">
+            <img :src="setPosterPath" alt="copertina">
         </figure>
         <div class="card-info">
             <h4>Titolo: {{ title }}</h4>
