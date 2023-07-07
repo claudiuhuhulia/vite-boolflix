@@ -29,6 +29,9 @@ export default {
             const url = new URL(`../assets/img/${img}.png`, import.meta.url)
             return url.href
         },
+        iconClass(n) {
+            return n <= this.setVote ? 'fas' : 'far';
+        }
 
     }
 }
@@ -42,28 +45,17 @@ export default {
         <div class="card-info">
             <h4>Titolo: {{ title }}</h4>
             <h5>Titolo originale: {{ originalTitle }}</h5>
-            <p>languege: <img v-if="hasFlag" :src="getImagePath(item.original_language)" :alt="item.original_language">
+            <p class="my-2">languege: <img v-if="hasFlag" :src="getImagePath(item.original_language)"
+                    :alt="item.original_language">
                 <span v-else>{{ item.original_language }}</span>
             </p>
-            <div class="valutation">
+            <div class="valutation  my-2">
                 Valutazione:
-                <FontAwesomeIcon v-if="setVote < 1" :icon="['far', 'fa-star']" />
-                <FontAwesomeIcon v-else :icon="['fas', 'fa-star']" />
-                <FontAwesomeIcon v-if="setVote < 2" :icon="['far', 'fa-star']" />
-                <FontAwesomeIcon v-else :icon="['fas', 'fa-star']" />
-
-                <FontAwesomeIcon v-if="setVote < 3" :icon="['far', 'fa-star']" />
-                <FontAwesomeIcon v-else :icon="['fas', 'fa-star']" />
-
-                <FontAwesomeIcon v-if="setVote < 4" :icon="['far', 'fa-star']" />
-                <FontAwesomeIcon v-else :icon="['fas', 'fa-star']" />
-
-                <FontAwesomeIcon v-if="setVote < 5" :icon="['far', 'fa-star']" />
-                <FontAwesomeIcon v-else :icon="['fas', 'fa-star']" />
-
-
-                {{ setVote }}
+                <FontAwesomeIcon v-for="n in 5" :key="n" :icon="[iconClass(n), 'star']" />
             </div>
+            <p>
+                Overview: {{ item.overview }}
+            </p>
         </div>
 
     </div>
@@ -85,21 +77,27 @@ p {
 .card-info {
     display: none;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
 }
 
 .my-card:hover .card-info {
     display: block;
+    overflow: auto;
 }
 
 .my-card:hover {
     background-color: rgb(27, 26, 26, 0.2);
+
 
     .poster {
         display: none;
     }
 }
 </style>
+
+
 
 
