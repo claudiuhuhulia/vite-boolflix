@@ -36,10 +36,10 @@ export default {
 
 <template>
     <div class="my-card">
-        <img :src="`http://image.tmdb.org/t/p/w342/${item.poster_path}`" alt="">
+        <img :src="`http://image.tmdb.org/t/p/w342/${item.poster_path}`" alt="copertina">
         <div class="card-info">
-            <h4>{{ title }}</h4>
-            <h4>{{ originalTitle }}</h4>
+            <h4>Titolo: {{ title }}</h4>
+            <h4>Titolo originale: {{ originalTitle }}</h4>
             <p>languege: <img v-if="hasFlag" :src="getImagePath(item.original_language)" :alt="item.original_language">
                 <span v-else>{{ item.original_language }}</span>
             </p>
@@ -77,6 +77,7 @@ p {
 
 .my-card {
     position: relative;
+    width: 342px;
 }
 
 .card-info {
@@ -88,6 +89,14 @@ p {
 
 .my-card:hover .card-info {
     display: block;
+}
+
+.my-card:hover {
+    background-color: rgb(27, 26, 26, 0.2);
+
+    img {
+        display: none;
+    }
 }
 </style>
 
